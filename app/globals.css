@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  /* Brand palette */
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-light: #2a2a2a;
+  --color-gold: #c9a961;
+  --color-gold-soft: #d8c08a;
+  --color-ivory: #f5f1e8;
+  --color-ivory-dark: #ece5d5;
+  --color-graysoft: #8e8e8e;
+  --color-terracotta: #d4a574;
+  --color-burgundy: #8b3a3a;
+
+  /* Fonts (wired to next/font CSS variables) */
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-accent: var(--font-cormorant), Georgia, serif;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* Thin gold divider used across sections */
+.gold-rule {
+  width: 64px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+/* Hide scrollbar for horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle fade for hero overlays */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 26, 26, 0.45),
+    rgba(26, 26, 26, 0.65)
+  );
 }
