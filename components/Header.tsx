@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "@/components/Logo";
 import { nav, site } from "@/lib/site";
 import { services } from "@/lib/services";
 
@@ -25,11 +26,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mobile menu whenever the route changes.
-  useEffect(() => {
+  // Close the menus on route change by comparing against the previous render —
+  // the React-recommended alternative to a setState-in-effect.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
     setMobileOpen(false);
     setOpenSub(null);
-  }, [pathname]);
+  }
 
   const childrenFor = (label: string, base?: { label: string; href: string }[]) =>
     label === "Services" ? servicesChildren : base;
@@ -43,12 +47,15 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-10">
-        <Link href="/" className="flex flex-col leading-none">
-          <span className="font-serif text-xl tracking-wide text-ivory md:text-2xl">
-            Interior <span className="text-gold">Specifics</span>
-          </span>
-          <span className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ivory/60">
-            Lagos · Nigeria
+        <Link href="/" className="flex items-center gap-3" aria-label="Interior Specifics — home">
+          <Logo className="h-11 w-11 shrink-0 md:h-12 md:w-12" />
+          <span className="flex flex-col leading-none">
+            <span className="font-serif text-lg tracking-wide text-ivory md:text-xl">
+              Interior <span className="text-gold">Specifics</span>
+            </span>
+            <span className="mt-1 text-[10px] uppercase tracking-[0.3em] text-ivory/60">
+              Lagos · Nigeria
+            </span>
           </span>
         </Link>
 
@@ -83,19 +90,19 @@ export default function Header() {
               </div>
             );
           })}
-          <a
-            href={site.calendlyUrl}
+          <Link
+            href={site.bookingUrl}
             className="ml-2 inline-flex min-h-11 items-center bg-terracotta px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors hover:bg-gold"
           >
             Book Consultation
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile toggle */}
         <button
           type="button"
           aria-label="Toggle menu"
-          aria-expanded={mobileOpen}
+          aria-expanded={mobileOpen ? "true" : "false"}
           onClick={() => setMobileOpen((v) => !v)}
           className="flex h-11 w-11 items-center justify-center text-ivory lg:hidden"
         >
@@ -161,12 +168,12 @@ export default function Header() {
               </div>
             );
           })}
-          <a
-            href={site.calendlyUrl}
+          <Link
+            href={site.bookingUrl}
             className="mt-6 inline-flex w-full min-h-12 items-center justify-center bg-terracotta px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-charcoal"
           >
             Book Your Private Consultation
-          </a>
+          </Link>
         </div>
       )}
     </header>

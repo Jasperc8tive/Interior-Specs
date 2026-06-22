@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import { projects, projectTypes, type ProjectType } from "@/lib/projects";
 
@@ -11,13 +11,17 @@ const filters: Filter[] = ["All", ...projectTypes];
 export default function ShowroomFilter() {
   const [active, setActive] = useState<Filter>("All");
 
-  // Read ?type= on mount so the Showroom dropdown can deep-link a category.
-  useEffect(() => {
+  // Apply the ?type= deep-link once, during render rather than in an effect.
+  // The first render still returns "All" (matching SSR), so there's no
+  // hydration mismatch; the param is applied on the immediate re-render.
+  const [appliedParam, setAppliedParam] = useState(false);
+  if (!appliedParam && typeof window !== "undefined") {
+    setAppliedParam(true);
     const param = new URLSearchParams(window.location.search).get("type");
     if (param && (filters as string[]).includes(param)) {
       setActive(param as Filter);
     }
-  }, []);
+  }
 
   const shown =
     active === "All" ? projects : projects.filter((p) => p.type === active);

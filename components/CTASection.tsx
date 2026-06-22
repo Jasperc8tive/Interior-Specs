@@ -20,7 +20,7 @@ export default function CTASection({
         <SectionReveal className="flex flex-col items-center gap-8 text-center">
           <SectionHeading eyebrow={eyebrow} title={title} intro={intro} light />
           <div className="flex flex-col gap-4 sm:flex-row">
-            <Button href={site.calendlyUrl} variant="primary">
+            <Button href={site.bookingUrl} variant="primary">
               {primaryLabel}
             </Button>
             <Button href={whatsappLink()} variant="outline">

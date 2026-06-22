@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
+import NewsletterForm from "@/components/NewsletterForm";
 import { nav, site, whatsappLink } from "@/lib/site";
 
 export default function Footer() {
@@ -8,9 +10,12 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <span className="font-serif text-2xl text-ivory">
-              Interior <span className="text-gold">Specifics</span>
-            </span>
+            <div className="flex items-center gap-3">
+              <Logo className="h-12 w-12 shrink-0" />
+              <span className="font-serif text-2xl text-ivory">
+                Interior <span className="text-gold">Specifics</span>
+              </span>
+            </div>
             <p className="mt-4 max-w-xs font-accent text-lg italic text-ivory/70">
               {site.tagline}
             </p>
@@ -68,21 +73,7 @@ export default function Footer() {
             <p className="mb-4 text-sm text-ivory/70">
               Design insights for the discerning, straight to your inbox.
             </p>
-            {/* TODO(integrations): connect to Mailchimp/ConvertKit. */}
-            <form className="flex flex-col gap-3" aria-label="Newsletter signup">
-              <input
-                type="email"
-                required
-                placeholder="Your email"
-                className="min-h-12 w-full border border-ivory/20 bg-transparent px-4 py-3 text-sm text-ivory placeholder:text-ivory/40 focus:border-gold focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="min-h-12 bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors hover:bg-gold-soft"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
             <div className="mt-6 flex gap-4">
               {Object.entries(site.socials).map(([name, url]) => (
                 <a

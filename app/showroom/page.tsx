@@ -60,7 +60,7 @@ export default function ShowroomPage() {
                 <li>{site.hours}</li>
               </ul>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Button href={site.calendlyUrl} variant="primary">
+                <Button href={site.bookingUrl} variant="primary">
                   Book a Showroom Tour
                 </Button>
                 <Button href="/contact" variant="outline">

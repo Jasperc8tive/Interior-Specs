@@ -19,14 +19,16 @@ export const site = {
   whatsapp: "2348012345678",
   whatsappMessage: "Hello Interior Specifics, I'd like to discuss a project.",
   address: {
-    street: "12 Bourdillon Road, Ikoyi",
-    city: "Lagos",
+    street: "Plot 697 Amodu Tijani Close, off Sanusi Fafunwa Street",
+    city: "Victoria Island, Lagos",
     country: "Nigeria",
   },
   hours: "Mon–Fri: 9am–6pm · Sat: 10am–4pm",
 
-  // TODO(integrations): real links.
-  calendlyUrl: "#book", // replace with https://calendly.com/your-handle
+  // Internal booking page that hosts the scheduler + request form.
+  bookingUrl: "/book",
+  // TODO(integrations): real Calendly link, embedded inside /book.
+  calendlyUrl: "", // e.g. https://calendly.com/your-handle/consultation
   gaMeasurementId: "", // e.g. "G-XXXXXXX"
 
   socials: {

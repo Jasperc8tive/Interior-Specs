@@ -8,7 +8,9 @@
       "Bash(curl -s http://localhost:3000/)",
       "Bash(curl -s http://localhost:3000/sitemap.xml)",
       "Bash(curl -s http://localhost:3000/services/lighting-design)",
-      "Bash(taskkill //F //IM node.exe)"
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(ls app/favicon.ico)",
+      "Bash(rm -f app/favicon.ico)"
     ]
   }
 }

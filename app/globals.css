@@ -51,15 +51,6 @@ h4 {
   background: var(--color-gold);
 }
 
-/* Hide scrollbar for horizontal carousels */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 /* Subtle fade for hero overlays */
 .hero-overlay {
   background: linear-gradient(

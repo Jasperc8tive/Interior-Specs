@@ -29,7 +29,7 @@ export default function Hero() {
             and businesses. From concept to completion, under one roof.
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <Button href={site.calendlyUrl} variant="primary">
+            <Button href={site.bookingUrl} variant="primary">
               Book Your Private Consultation
             </Button>
             <Button href="#portfolio" variant="outline">
