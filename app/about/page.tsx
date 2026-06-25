@@ -4,7 +4,9 @@ import PageHero from "@/components/PageHero";
 import ProcessTimeline from "@/components/ProcessTimeline";
 import CTASection from "@/components/CTASection";
 import SectionReveal from "@/components/SectionReveal";
-import { Container, SectionHeading } from "@/components/ui";
+import RevealHeading from "@/components/RevealHeading";
+import Parallax from "@/components/Parallax";
+import { Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -38,23 +40,24 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow={`Since ${site.foundedYear}`}
-        title="Crafting Legacies Through Design"
+        title="Crafting legacies through design"
+        accent={{ from: 1, to: 1 }}
         intro="We are a Lagos-based luxury interior design studio dedicated to spaces that honour the people who live and work in them."
         image="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=2000&q=80"
         imageAlt="Elegant designed interior by Interior Specifics"
       />
 
       {/* Story / Profile */}
-      <section id="profile" className="bg-white py-20 md:py-28 scroll-mt-24">
+      <section id="profile" className="scroll-mt-24 bg-white py-24 md:py-32">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
             <SectionReveal>
-              <SectionHeading
+              <RevealHeading
                 eyebrow="Our Story"
-                title="A Studio Built on a Single Conviction"
+                title="A studio built on a single conviction"
                 align="left"
               />
-              <div className="mt-6 space-y-4 text-graysoft">
+              <div className="mt-7 space-y-5 text-lg text-muted">
                 <p>
                   Interior Specifics began with the belief that every accomplished
                   person deserves a space that reflects their journey. What started
@@ -70,48 +73,45 @@ export default function AboutPage() {
               </div>
             </SectionReveal>
             <SectionReveal delay={0.1} className="relative aspect-[4/3] overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
-                alt="Interior Specifics design studio"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
+              <Parallax className="absolute inset-0" distance={34}>
+                <Image
+                  src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80"
+                  alt="Interior Specifics design studio"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="scale-110 object-cover"
+                />
+              </Parallax>
             </SectionReveal>
           </div>
 
           {/* Mission & Vision */}
-          <div className="mt-20 grid gap-8 md:grid-cols-2">
-            <SectionReveal className="border-t-2 border-gold bg-ivory p-10">
-              <h3 className="text-2xl text-charcoal">Our Mission</h3>
-              <p className="mt-4 text-graysoft">
-                To design and deliver exceptional spaces that elevate how our clients
-                live, work and feel — with absolute craft and complete peace of mind.
-              </p>
-            </SectionReveal>
-            <SectionReveal delay={0.1} className="border-t-2 border-gold bg-ivory p-10">
-              <h3 className="text-2xl text-charcoal">Our Vision</h3>
-              <p className="mt-4 text-graysoft">
-                To be West Africa&apos;s most respected name in luxury interior
-                design — the natural choice for those who expect the very best.
-              </p>
-            </SectionReveal>
+          <div className="mt-20 grid gap-6 md:grid-cols-2">
+            {[
+              { h: "Our Mission", p: "To design and deliver exceptional spaces that elevate how our clients live, work and feel — with absolute craft and complete peace of mind." },
+              { h: "Our Vision", p: "To be West Africa's most respected name in luxury interior design — the natural choice for those who expect the very best." },
+            ].map((m, i) => (
+              <SectionReveal key={m.h} delay={i * 0.1} className="group border-t-2 border-gold bg-ivory p-10 transition-colors duration-300 hover:bg-ivory-dark">
+                <h3 className="text-2xl text-charcoal">{m.h}</h3>
+                <p className="mt-4 text-muted">{m.p}</p>
+              </SectionReveal>
+            ))}
           </div>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="bg-ivory py-20 md:py-28">
+      <section className="bg-ivory py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="What We Stand For" title="Our Core Values" />
+            <RevealHeading eyebrow="What We Stand For" title="Our core values" />
           </SectionReveal>
-          <div className="mt-14 grid gap-px overflow-hidden border border-charcoal/10 bg-charcoal/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
-              <SectionReveal key={v.title} delay={i * 0.08} className="h-full bg-ivory p-8">
-                <span className="font-serif text-2xl text-gold">0{i + 1}</span>
-                <h3 className="mt-3 text-lg text-charcoal">{v.title}</h3>
-                <p className="mt-2 text-sm text-graysoft">{v.body}</p>
+              <SectionReveal key={v.title} delay={i * 0.08} className="group h-full bg-ivory p-8 transition-colors duration-300 hover:bg-white">
+                <span className="font-serif text-3xl text-gold/80 transition-colors duration-300 group-hover:text-gold">0{i + 1}</span>
+                <h3 className="mt-4 text-lg text-charcoal">{v.title}</h3>
+                <p className="mt-3 text-sm text-muted">{v.body}</p>
               </SectionReveal>
             ))}
           </div>
@@ -119,42 +119,43 @@ export default function AboutPage() {
       </section>
 
       {/* Method */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading
+            <RevealHeading
               eyebrow="How We Work"
               title="The Interior Specifics Method™"
               intro="A proven, five-step process refined across hundreds of projects."
             />
           </SectionReveal>
-          <div className="mt-14">
+          <div className="mt-16">
             <ProcessTimeline />
           </div>
         </Container>
       </section>
 
       {/* Directors */}
-      <section id="directors" className="bg-ivory py-20 md:py-28 scroll-mt-24">
+      <section id="directors" className="scroll-mt-24 bg-ivory py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="Leadership" title="Meet the Directors" />
+            <RevealHeading eyebrow="Leadership" title="Meet the directors" />
           </SectionReveal>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {directors.map((d, i) => (
-              <SectionReveal key={d.name} delay={i * 0.1} className="bg-white">
+              <SectionReveal key={d.name} delay={i * 0.1} className="group bg-white">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <Image
                     src={d.img}
                     alt={d.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-[1.1s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </div>
-                <div className="p-6">
+                <div className="p-7">
                   <h3 className="text-lg text-charcoal">{d.name}</h3>
-                  <p className="mt-1 text-sm text-gold">{d.role}</p>
+                  <p className="mt-1 text-sm uppercase tracking-[0.12em] text-gold">{d.role}</p>
                 </div>
               </SectionReveal>
             ))}
@@ -163,23 +164,19 @@ export default function AboutPage() {
       </section>
 
       {/* Awards & Clients */}
-      <section id="awards" className="bg-charcoal py-20 md:py-28 scroll-mt-24">
+      <section id="awards" className="grain relative scroll-mt-24 bg-charcoal py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading
-              eyebrow="Recognition"
-              title="Awards & Recognition"
-              light
-            />
+            <RevealHeading eyebrow="Recognition" title="Awards & recognition" light />
           </SectionReveal>
-          <div className="mx-auto mt-12 grid max-w-3xl gap-px overflow-hidden border border-ivory/10 bg-ivory/10 sm:grid-cols-2">
+          <div className="mx-auto mt-14 grid max-w-3xl gap-px overflow-hidden border border-line-light bg-line-light sm:grid-cols-2">
             {awards.map((a, i) => (
-              <SectionReveal key={a} delay={i * 0.06} className="bg-charcoal p-6">
+              <SectionReveal key={a} delay={i * 0.06} className="group flex items-center bg-charcoal p-7 transition-colors duration-300 hover:bg-charcoal-light">
                 <p className="text-sm text-ivory/80">{a}</p>
               </SectionReveal>
             ))}
           </div>
-          <p id="clients" className="mx-auto mt-10 max-w-2xl text-center text-ivory/60 scroll-mt-24">
+          <p id="clients" className="mx-auto mt-12 max-w-2xl scroll-mt-24 text-center text-ivory/60">
             Trusted by homeowners, property developers and corporate clients across
             Lagos and beyond.
           </p>
@@ -188,7 +185,7 @@ export default function AboutPage() {
 
       <CTASection
         eyebrow="Work With Us"
-        title="Partner With Our Team"
+        title="Partner with our team"
         intro="Tell us about your space and your ambitions. We'll show you what's possible."
       />
     </>

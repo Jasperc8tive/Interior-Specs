@@ -4,8 +4,9 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import SectionReveal from "@/components/SectionReveal";
+import RevealHeading from "@/components/RevealHeading";
 import PortfolioGrid from "@/components/PortfolioGrid";
-import { Container, SectionHeading } from "@/components/ui";
+import { Container } from "@/components/ui";
 import { getService, services } from "@/lib/services";
 import { projects } from "@/lib/projects";
 import { site } from "@/lib/site";
@@ -59,45 +60,50 @@ export default async function ServiceDetailPage({ params }: Params) {
       />
 
       {/* Overview */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-24 md:py-32">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-3">
+          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
             <SectionReveal className="lg:col-span-2">
-              <SectionHeading eyebrow="Overview" title="What This Service Includes" align="left" />
-              <div className="mt-6 space-y-4 text-graysoft">
+              <RevealHeading eyebrow="Overview" title="What this service includes" align="left" />
+              <div className="mt-7 space-y-5 text-lg text-muted">
                 {service.overview.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
             </SectionReveal>
-            <SectionReveal delay={0.1} className="h-fit border-t-2 border-gold bg-ivory p-8">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Investment
-              </span>
-              <p className="mt-3 font-serif text-3xl text-charcoal">
+            <SectionReveal delay={0.1} className="h-fit border-t-2 border-gold bg-ivory p-8 lg:sticky lg:top-28">
+              <span className="eyebrow text-gold">Investment</span>
+              <p className="mt-4 font-serif text-4xl text-charcoal">
                 From {service.investmentFrom}
               </p>
-              <p className="mt-3 text-sm text-graysoft">
+              <p className="mt-4 text-sm text-muted">
                 Every project is unique. We&apos;ll provide a clear, documented quote
                 after your consultation.
               </p>
+              <Link
+                href={site.bookingUrl}
+                className="mt-6 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-gold"
+              >
+                Book a Consultation
+                <span className="h-px w-6 bg-gold" />
+              </Link>
             </SectionReveal>
           </div>
         </Container>
       </section>
 
       {/* Process */}
-      <section className="bg-ivory py-20 md:py-28">
+      <section className="bg-ivory py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="Process" title="How It Works" />
+            <RevealHeading eyebrow="Process" title="How it works" />
           </SectionReveal>
-          <div className="mt-14 grid gap-px overflow-hidden border border-gold/20 bg-gold/20 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-px overflow-hidden border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {service.process.map((step, i) => (
-              <SectionReveal key={step.step} delay={i * 0.08} className="h-full bg-ivory p-7">
-                <span className="font-serif text-2xl text-gold">0{i + 1}</span>
-                <h3 className="mt-2 text-lg text-charcoal">{step.step}</h3>
-                <p className="mt-2 text-sm text-graysoft">{step.detail}</p>
+              <SectionReveal key={step.step} delay={i * 0.08} className="group h-full bg-ivory p-8 transition-colors duration-300 hover:bg-white">
+                <span className="font-serif text-3xl text-gold/80 transition-colors duration-300 group-hover:text-gold">0{i + 1}</span>
+                <h3 className="mt-4 text-lg text-charcoal">{step.step}</h3>
+                <p className="mt-2 text-sm text-muted">{step.detail}</p>
               </SectionReveal>
             ))}
           </div>
@@ -105,35 +111,35 @@ export default async function ServiceDetailPage({ params }: Params) {
       </section>
 
       {/* Portfolio */}
-      <section className="bg-charcoal py-20 md:py-28">
+      <section className="grain relative bg-onyx py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="Portfolio" title="Recent Work" light />
+            <RevealHeading eyebrow="Portfolio" title="Recent work" light />
           </SectionReveal>
-          <div className="mt-14">
+          <div className="mt-16">
             <PortfolioGrid items={related} />
           </div>
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="Questions" title="Frequently Asked" />
+            <RevealHeading eyebrow="Questions" title="Frequently asked" />
           </SectionReveal>
-          <div className="mx-auto mt-12 max-w-3xl divide-y divide-charcoal/10 border-y border-charcoal/10">
+          <div className="mx-auto mt-12 max-w-3xl divide-y divide-line border-y border-line">
             {service.faqs.map((f) => (
-              <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-lg text-charcoal">
+              <details key={f.q} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg text-charcoal transition-colors group-hover:text-gold">
                   {f.q}
-                  <span className="text-gold transition-transform group-open:rotate-45">+</span>
+                  <span className="text-2xl font-light text-gold transition-transform duration-300 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-graysoft">{f.a}</p>
+                <p className="mt-3 text-muted">{f.a}</p>
               </details>
             ))}
           </div>
-          <div className="mt-12 text-center text-sm text-graysoft">
+          <div className="mt-12 text-center text-sm text-muted">
             Explore more services on our{" "}
             <Link href="/services" className="text-gold underline-offset-4 hover:underline">
               services overview
@@ -145,7 +151,7 @@ export default async function ServiceDetailPage({ params }: Params) {
 
       <CTASection
         eyebrow="Begin"
-        title={`Start Your ${service.title} Project`}
+        title={`Start your ${service.title} project`}
         primaryLabel="Book Your Consultation"
       />
     </>

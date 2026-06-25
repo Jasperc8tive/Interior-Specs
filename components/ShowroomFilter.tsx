@@ -34,10 +34,10 @@ export default function ShowroomFilter() {
             key={f}
             type="button"
             onClick={() => setActive(f)}
-            className={`min-h-11 px-5 py-2 text-xs font-semibold uppercase tracking-[0.15em] transition-colors ${
+            className={`min-h-11 cursor-pointer px-6 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
               active === f
                 ? "bg-charcoal text-ivory"
-                : "border border-charcoal/15 text-graysoft hover:border-gold hover:text-charcoal"
+                : "border border-line text-muted hover:border-gold hover:text-charcoal"
             }`}
           >
             {f}
