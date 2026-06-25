@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import Analytics from "@/components/Analytics";
+import SmoothScroll from "@/components/SmoothScroll";
 import { site } from "@/lib/site";
 
 const playfair = Playfair_Display({
@@ -83,9 +84,11 @@ export default function RootLayout({
             __html: JSON.stringify(localBusinessSchema),
           }}
         />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScroll>
         <WhatsAppButton />
         <Analytics />
       </body>

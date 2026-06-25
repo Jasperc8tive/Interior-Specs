@@ -1,18 +1,11 @@
 import SectionReveal from "@/components/SectionReveal";
-
-const steps = [
-  { n: "01", title: "Discover", detail: "Deep-dive consultation, lifestyle audit and vision mapping." },
-  { n: "02", title: "Design", detail: "Concept development, 3D renderings and material selection." },
-  { n: "03", title: "Source", detail: "Curated furniture, artisan partnerships and global procurement." },
-  { n: "04", title: "Execute", detail: "Project management, quality control and timeline adherence." },
-  { n: "05", title: "Reveal", detail: "Final styling, walkthrough and lifetime support." },
-];
+import { methodActs } from "@/lib/method";
 
 // The Interior Specifics Method™ — five-step signature process.
 export default function ProcessTimeline() {
   return (
     <div className="grid gap-px overflow-hidden border border-gold/20 bg-gold/20 md:grid-cols-5">
-      {steps.map((s, i) => (
+      {methodActs.map((s, i) => (
         <SectionReveal
           key={s.n}
           delay={i * 0.08}
