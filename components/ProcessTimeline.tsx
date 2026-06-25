@@ -1,23 +1,33 @@
-import SectionReveal from "@/components/SectionReveal";
+"use client";
+
+import { motion } from "framer-motion";
+import { rise, stagger } from "@/lib/anim";
 import { methodActs } from "@/lib/method";
 
-// The Interior Specifics Method™ — five-step signature process.
+// The Interior Specifics Method™ — five-step signature process, revealed as a
+// staggered row of hairline-separated cards.
 export default function ProcessTimeline() {
   return (
-    <div className="grid gap-px overflow-hidden border border-gold/20 bg-gold/20 md:grid-cols-5">
-      {methodActs.map((s, i) => (
-        <SectionReveal
+    <motion.ol
+      variants={stagger(0.1)}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.15 }}
+      className="grid gap-px overflow-hidden border border-line bg-line md:grid-cols-5"
+    >
+      {methodActs.map((s) => (
+        <motion.li
           key={s.n}
-          delay={i * 0.08}
-          className="flex h-full flex-col gap-3 bg-ivory p-7"
+          variants={rise}
+          className="group flex h-full flex-col gap-3 bg-ivory p-7 transition-colors duration-300 hover:bg-white"
         >
           <span className="font-serif text-3xl text-gold">{s.n}</span>
-          <h3 className="text-lg uppercase tracking-[0.12em] text-charcoal">
+          <h3 className="text-sm uppercase tracking-[0.14em] text-charcoal">
             {s.title}
           </h3>
-          <p className="text-sm text-graysoft">{s.detail}</p>
-        </SectionReveal>
+          <p className="text-sm text-muted">{s.detail}</p>
+        </motion.li>
       ))}
-    </div>
+    </motion.ol>
   );
 }

@@ -6,7 +6,7 @@ import { site, whatsappLink } from "@/lib/site";
 
 // Consultation request form. Submits to /api/lead (Resend).
 const inputClass =
-  "min-h-12 w-full border border-charcoal/15 bg-white px-4 py-3 text-sm focus:border-gold focus:outline-none";
+  "min-h-12 w-full border border-line bg-white px-4 py-3 text-sm text-charcoal transition-colors duration-200 placeholder:text-graysoft focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/40";
 
 export default function BookingForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -28,7 +28,7 @@ export default function BookingForm() {
     return (
       <div className="border-t-2 border-gold bg-ivory p-10 text-center">
         <h3 className="text-2xl text-charcoal">Request received</h3>
-        <p className="mt-3 text-graysoft">
+        <p className="mt-3 text-muted">
           Thank you — we&apos;ll confirm your consultation by email or phone within
           24 hours.
         </p>
@@ -83,7 +83,7 @@ export default function BookingForm() {
         placeholder="Tell us a little about your project (optional)"
         className={`${inputClass} resize-y`}
       />
-      <label className="flex items-start gap-3 text-sm text-graysoft">
+      <label className="flex items-start gap-3 text-sm text-muted">
         <input required type="checkbox" name="consent" className="mt-1 h-4 w-4 accent-gold" />
         <span>I agree to the privacy policy and consent to being contacted.</span>
       </label>
@@ -102,7 +102,7 @@ export default function BookingForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="min-h-12 w-full bg-terracotta px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors hover:bg-gold disabled:opacity-60 sm:w-auto"
+        className="min-h-12 w-full cursor-pointer bg-terracotta px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors duration-300 hover:bg-gold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === "loading" ? "Sending…" : "Request My Consultation"}
       </button>

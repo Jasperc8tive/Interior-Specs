@@ -7,7 +7,7 @@ import { site, whatsappLink } from "@/lib/site";
 // Qualifying contact form. Submits to /api/lead (Resend) with a honeypot guard.
 // TODO(integrations): optionally add reCAPTCHA for extra spam protection.
 const inputClass =
-  "min-h-12 w-full border border-charcoal/15 bg-white px-4 py-3 text-sm focus:border-gold focus:outline-none";
+  "min-h-12 w-full border border-line bg-white px-4 py-3 text-sm text-charcoal transition-colors duration-200 placeholder:text-graysoft focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold/40";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -29,7 +29,7 @@ export default function ContactForm() {
     return (
       <div className="border-t-2 border-gold bg-ivory p-10 text-center">
         <h3 className="text-2xl text-charcoal">Thank you</h3>
-        <p className="mt-3 text-graysoft">
+        <p className="mt-3 text-muted">
           We&apos;ve received your inquiry and will respond within 24 hours.
         </p>
       </div>
@@ -80,7 +80,7 @@ export default function ContactForm() {
         placeholder="Tell us about your project *"
         className={`${inputClass} resize-y`}
       />
-      <label className="flex items-start gap-3 text-sm text-graysoft">
+      <label className="flex items-start gap-3 text-sm text-muted">
         <input required type="checkbox" name="consent" className="mt-1 h-4 w-4 accent-gold" />
         <span>I agree to the privacy policy and consent to being contacted.</span>
       </label>
@@ -99,7 +99,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="min-h-12 w-full bg-terracotta px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors hover:bg-gold disabled:opacity-60 sm:w-auto"
+        className="min-h-12 w-full cursor-pointer bg-terracotta px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-charcoal transition-colors duration-300 hover:bg-gold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === "loading" ? "Sending…" : "Send Inquiry"}
       </button>

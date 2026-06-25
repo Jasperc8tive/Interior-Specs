@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import BookingForm from "@/components/BookingForm";
 import SectionReveal from "@/components/SectionReveal";
-import { Container, SectionHeading } from "@/components/ui";
+import RevealHeading from "@/components/RevealHeading";
+import { Container } from "@/components/ui";
 import { site, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,24 +25,25 @@ export default function BookPage() {
     <>
       <PageHero
         eyebrow="Private Consultation"
-        title="Book Your Private Consultation"
+        title="Book your private consultation"
+        accent={{ from: 2, to: 3 }}
         intro="A complimentary 30-minute conversation about your space — in person at our Lagos showroom, by video, or over the phone."
         image="https://images.unsplash.com/photo-1567016526105-22da7c13161a?auto=format&fit=crop&w=2000&q=80"
         imageAlt="Elegant consultation lounge interior"
       />
 
       {/* What to expect */}
-      <section className="bg-ivory py-20 md:py-28">
+      <section className="bg-ivory py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading eyebrow="What to Expect" title="Your First 30 Minutes With Us" />
+            <RevealHeading eyebrow="What to Expect" title="Your first 30 minutes with us" />
           </SectionReveal>
-          <div className="mt-14 grid gap-px overflow-hidden border border-charcoal/10 bg-charcoal/10 md:grid-cols-3">
+          <div className="mt-16 grid gap-px overflow-hidden border border-line bg-line md:grid-cols-3">
             {expect.map((e, i) => (
-              <SectionReveal key={e.title} delay={i * 0.1} className="h-full bg-ivory p-8">
-                <span className="font-serif text-2xl text-gold">0{i + 1}</span>
-                <h3 className="mt-3 text-lg text-charcoal">{e.title}</h3>
-                <p className="mt-2 text-sm text-graysoft">{e.body}</p>
+              <SectionReveal key={e.title} delay={i * 0.1} className="group h-full bg-ivory p-8 transition-colors duration-300 hover:bg-white">
+                <span className="font-serif text-3xl text-gold/80 transition-colors duration-300 group-hover:text-gold">0{i + 1}</span>
+                <h3 className="mt-4 text-lg text-charcoal">{e.title}</h3>
+                <p className="mt-2 text-sm text-muted">{e.body}</p>
               </SectionReveal>
             ))}
           </div>
@@ -49,16 +51,16 @@ export default function BookPage() {
       </section>
 
       {/* Scheduler + request form */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white py-24 md:py-32">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-5">
+          <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
             <SectionReveal className="lg:col-span-3">
-              <SectionHeading
+              <RevealHeading
                 eyebrow="Request a Time"
-                title="Tell Us When Suits You"
+                title="Tell us when suits you"
                 align="left"
               />
-              <p className="mt-4 text-graysoft">
+              <p className="mt-5 text-lg text-muted">
                 Share your preferred date and time and we&apos;ll confirm within 24
                 hours. Prefer to pick a slot instantly? Use the scheduler.
               </p>
@@ -74,12 +76,12 @@ export default function BookPage() {
                 <iframe
                   src={site.calendlyUrl}
                   title="Schedule a consultation"
-                  className="h-[640px] w-full border border-charcoal/10"
+                  className="h-[640px] w-full border border-line"
                 />
               ) : (
                 <div className="flex h-full flex-col justify-center border-t-2 border-gold bg-ivory p-8">
-                  <h3 className="text-xl text-charcoal">Instant Scheduling</h3>
-                  <p className="mt-3 text-sm text-graysoft">
+                  <h3 className="text-xl text-charcoal">Instant scheduling</h3>
+                  <p className="mt-3 text-sm text-muted">
                     {/* TODO(integrations): set site.calendlyUrl to embed the live
                         scheduler here. Until then, the request form is fully active. */}
                     Live calendar booking will appear here once connected. In the
@@ -87,19 +89,19 @@ export default function BookPage() {
                     confirm your slot personally.
                   </p>
                   <div className="mt-6 space-y-2 text-sm">
-                    <a href={`tel:${site.phoneHref}`} className="block text-charcoal hover:text-gold">
+                    <a href={`tel:${site.phoneHref}`} className="block text-charcoal transition-colors hover:text-gold">
                       Call us: {site.phoneDisplay}
                     </a>
                     <a
                       href={whatsappLink()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-charcoal hover:text-gold"
+                      className="block text-charcoal transition-colors hover:text-gold"
                     >
                       Or message us on WhatsApp
                     </a>
                   </div>
-                  <p className="mt-6 text-xs text-graysoft">{site.hours}</p>
+                  <p className="mt-6 text-xs text-muted">{site.hours}</p>
                 </div>
               )}
             </SectionReveal>

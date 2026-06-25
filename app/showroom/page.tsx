@@ -3,7 +3,8 @@ import PageHero from "@/components/PageHero";
 import CTASection from "@/components/CTASection";
 import ShowroomFilter from "@/components/ShowroomFilter";
 import SectionReveal from "@/components/SectionReveal";
-import { Button, Container, SectionHeading } from "@/components/ui";
+import RevealHeading from "@/components/RevealHeading";
+import { Button, Container } from "@/components/ui";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,45 +18,46 @@ export default function ShowroomPage() {
     <>
       <PageHero
         eyebrow="Showroom & Portfolio"
-        title="Spaces That Speak of Achievement"
+        title="Spaces that speak of achievement"
+        accent={{ from: 3, to: 4 }}
         intro="Explore our completed work and visit our Lagos showroom to discover curated furniture, fabrics and finishes."
         image="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80"
         imageAlt="Curated luxury showroom interior"
       />
 
       {/* Filterable project archive */}
-      <section className="bg-ivory py-20 md:py-28">
+      <section className="bg-ivory py-24 md:py-32">
         <Container>
           <SectionReveal>
-            <SectionHeading
+            <RevealHeading
               eyebrow="Case Studies"
-              title="Our Recent Projects"
+              title="Our recent projects"
               intro="Filter by discipline, then open any project to see the full story behind it."
             />
           </SectionReveal>
-          <div className="mt-14">
+          <div className="mt-16">
             <ShowroomFilter />
           </div>
         </Container>
       </section>
 
       {/* Visit */}
-      <section className="bg-charcoal py-20 md:py-28">
+      <section className="grain relative bg-charcoal py-24 md:py-32">
         <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
             <SectionReveal>
-              <SectionHeading
+              <RevealHeading
                 eyebrow="Visit Us"
-                title="Book a Private Showroom Tour"
+                title="Book a private showroom tour"
                 align="left"
                 light
               />
-              <p className="mt-6 text-ivory/75">
+              <p className="mt-7 text-lg text-ivory/75">
                 Step inside our Lagos showroom to explore curated collections of
                 furniture, lighting, textiles and art — and discuss your project with
                 our team in person.
               </p>
-              <ul className="mt-6 space-y-2 text-sm text-ivory/70">
+              <ul className="mt-7 space-y-3 border-t border-line-light pt-7 text-sm text-ivory/70">
                 <li>{site.address.street}, {site.address.city}</li>
                 <li>{site.hours}</li>
               </ul>
@@ -71,7 +73,7 @@ export default function ShowroomPage() {
             {/* TODO(integrations): replace with a real Google Maps embed. */}
             <SectionReveal
               delay={0.1}
-              className="flex aspect-[4/3] items-center justify-center border border-ivory/15 bg-charcoal-light text-sm uppercase tracking-[0.2em] text-ivory/40"
+              className="flex aspect-[4/3] items-center justify-center border border-line-light bg-charcoal-light text-sm uppercase tracking-[0.2em] text-ivory/40"
             >
               Map · Lagos Showroom
             </SectionReveal>
