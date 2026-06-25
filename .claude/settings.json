@@ -10,7 +10,16 @@
       "Bash(curl -s http://localhost:3000/services/lighting-design)",
       "Bash(taskkill //F //IM node.exe)",
       "Bash(ls app/favicon.ico)",
-      "Bash(rm -f app/favicon.ico)"
+      "Bash(rm -f app/favicon.ico)",
+      "Bash(grep -rn \"components/Hero\\\\\"\" app components)",
+      "Bash(rm -f components/Hero.tsx)",
+      "Bash(netstat -ano)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3100/)",
+      "Bash(node -e \"const p=require\\('puppeteer'\\);console.log\\('exec:', p.executablePath\\(\\)\\)\")",
+      "Bash(node scripts/shoot.mjs)",
+      "Bash(node -e \"console.log\\('framer-motion:', require\\('framer-motion/package.json'\\).version\\); console.log\\('react:', require\\('react/package.json'\\).version\\)\")",
+      "Bash(rm -rf shots scripts)",
+      "Bash(npm uninstall *)"
     ]
   }
 }
