@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/journal-preview",
+	"version": "1.0.0",
+	"title": "Journal Preview",
+	"category": "interior-specifics",
+	"icon": "media-document",
+	"description": "The latest journal posts as image-led editorial cards, with category and reading time, under a heading and a link to the journal.",
+	"keywords": [ "journal", "blog", "posts", "articles", "news" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "The Journal" },
+		"title": { "type": "string", "default": "Design insights for the discerning" },
+		"accentFrom": { "type": "number", "default": 3 },
+		"accentTo": { "type": "number", "default": 4 },
+		"linkLabel": { "type": "string", "default": "Read the Journal" },
+		"linkUrl": { "type": "string", "default": "/blog/" },
+		"count": { "type": "number", "default": 3 },
+		"category": { "type": "number", "default": 0 }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/directors",
+	"version": "1.0.0",
+	"title": "Directors",
+	"category": "interior-specifics",
+	"icon": "groups",
+	"description": "Leadership section: a centred heading above portrait cards with name and role; portraits zoom softly on hover. Targeted by the “Directors” menu link (#directors).",
+	"keywords": [ "team", "people", "leadership", "directors", "staff" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Leadership" },
+		"title": { "type": "string", "default": "Meet the directors" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "" },
+		"people": {
+			"type": "array",
+			"default": [
+				{ "name": "Founder & Creative Director", "role": "Vision & Design", "imageId": 0, "imageUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80", "imageAlt": "Founder & Creative Director" },
+				{ "name": "Design Director", "role": "Concept & Detailing", "imageId": 0, "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80", "imageAlt": "Design Director" },
+				{ "name": "Head of Projects", "role": "Execution & Delivery", "imageId": 0, "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80", "imageAlt": "Head of Projects" }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": { "type": "string" },
+					"role": { "type": "string" },
+					"imageId": { "type": "number" },
+					"imageUrl": { "type": "string" },
+					"imageAlt": { "type": "string" }
+				}
+			}
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

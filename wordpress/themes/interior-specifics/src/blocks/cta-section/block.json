@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/cta-section",
+	"version": "1.0.0",
+	"title": "Closing CTA",
+	"category": "interior-specifics",
+	"icon": "megaphone",
+	"description": "Dark closing call-to-action band with a gold glow: eyebrow, animated heading, intro, a booking button and a WhatsApp button. Use as the last block on a page.",
+	"keywords": [ "cta", "call to action", "consultation", "booking", "whatsapp" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Begin" },
+		"title": { "type": "string", "default": "Ready to transform your space?" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "Every project is unique. Let's discuss yours over a private consultation." },
+		"primaryLabel": { "type": "string", "default": "Book Your Private Consultation" },
+		"primaryUrl": { "type": "string", "default": "" },
+		"secondaryLabel": { "type": "string", "default": "Chat on WhatsApp" }
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

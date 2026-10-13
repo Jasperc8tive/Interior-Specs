@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/founder-note",
+	"version": "1.0.0",
+	"title": "Founder Note",
+	"category": "interior-specifics",
+	"icon": "id-alt",
+	"description": "The voice behind the house: a parallaxed founder portrait beside a heading, short biography, signed pull quote and a link to the full story.",
+	"keywords": [ "founder", "leadership", "about", "quote" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Leadership" },
+		"title": { "type": "string", "default": "Meet the visionary behind Interior Specifics" },
+		"accentFrom": { "type": "number", "default": 2 },
+		"accentTo": { "type": "number", "default": 3 },
+		"body": { "type": "string", "default": "With over fifteen years shaping Nigeria's finest interiors, our founder built Interior Specifics on a single conviction: every accomplished person deserves a space that honours their journey." },
+		"quote": { "type": "string", "default": "I believe every successful person deserves a space that honours their journey." },
+		"buttonLabel": { "type": "string", "default": "Read Our Story" },
+		"buttonUrl": { "type": "string", "default": "/about/#directors" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1100&q=80" },
+		"imageAlt": { "type": "string", "default": "The founder of Interior Specifics" },
+		"caption": { "type": "string", "default": "Founder & Principal Designer" }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

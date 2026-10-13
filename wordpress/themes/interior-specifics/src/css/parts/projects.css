@@ -1,0 +1,41 @@
+/* projects — area styles that utilities cannot express (keyframes, complex selectors). Owned by the projects build. */
+
+/* ---- Project cards (template-parts/portfolio-card.php) ----------------- *
+ * Hover / keyboard focus open the drawer through group-* utilities. Touch screens have no
+ * hover, so there the blurb, investment range and underline are simply always shown.
+ */
+@media (hover: none) {
+  .ist-card .ist-card-drawer {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .ist-card .ist-card-underline {
+    width: 100%;
+  }
+}
+
+/* ---- Gallery lightbox (template-parts/project-gallery.php, js/modules/lightbox.js) ---- */
+.ist-lightbox {
+  opacity: 0;
+  transition: opacity 0.25s ease-out;
+  overscroll-behavior: contain;
+  touch-action: pan-y pinch-zoom;
+}
+.ist-lightbox.is-open {
+  opacity: 1;
+}
+
+@keyframes ist-lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+.ist-lightbox__figure.is-entering {
+  animation: ist-lightbox-in 0.3s ease-out both;
+}
+
+/* ---- Showroom filter (archive-is_project.php, js/modules/showroom-filter.js) ---- */
+[data-showroom-grid] > [hidden] {
+  display: none !important;
+}

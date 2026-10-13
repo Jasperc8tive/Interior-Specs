@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/page-hero",
+	"version": "1.0.0",
+	"title": "Page Hero",
+	"category": "interior-specifics",
+	"icon": "cover-image",
+	"description": "Full-bleed hero for inner pages: eyebrow, animated title with gold accent, intro and a scroll-drifting image. Use as the first block on a page.",
+	"keywords": [ "hero", "banner", "header" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"multiple": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "" },
+		"title": { "type": "string", "default": "Page title" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80" },
+		"imageAlt": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

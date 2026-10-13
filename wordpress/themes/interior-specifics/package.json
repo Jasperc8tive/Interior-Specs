@@ -1,0 +1,28 @@
+{
+  "name": "interior-specifics-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interior Specifics WordPress theme — blocks, motion and styling.",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "wp-scripts build --webpack-copy-php",
+    "build:css": "tailwindcss -i src/css/main.css -o build/css/main.css --minify",
+    "start": "concurrently -k \"wp-scripts start --webpack-copy-php\" \"tailwindcss -i src/css/main.css -o build/css/main.css --watch\"",
+    "fonts": "node scripts/copy-fonts.mjs",
+    "lint:js": "cross-env ESLINT_USE_FLAT_CONFIG=false wp-scripts lint-js src"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/playfair-display": "^5.2.5",
+    "@fontsource/cormorant": "^5.2.5",
+    "@tailwindcss/cli": "^4.1.0",
+    "@wordpress/scripts": "^30.0.0",
+    "concurrently": "^9.1.0",
+    "cross-env": "^10.1.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.3.3"
+  },
+  "dependencies": {
+    "lenis": "^1.3.23"
+  }
+}

@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/marquee",
+	"version": "1.0.0",
+	"title": "Credential Marquee",
+	"category": "interior-specifics",
+	"icon": "leftright",
+	"description": "A quiet, continuously scrolling band of credentials on a dark background. Becomes a static, centred row for visitors who prefer reduced motion.",
+	"keywords": [ "marquee", "ticker", "credentials", "band" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"items": {
+			"type": "array",
+			"default": [
+				{ "text": "Residential" },
+				{ "text": "Commercial" },
+				{ "text": "Hospitality" },
+				{ "text": "Custom Furniture" },
+				{ "text": "Lighting Design" },
+				{ "text": "Project Management" },
+				{ "text": "Global Sourcing" },
+				{ "text": "Turnkey Delivery" }
+			],
+			"items": { "type": "object" }
+		},
+		"speed": { "type": "number", "default": 36 }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

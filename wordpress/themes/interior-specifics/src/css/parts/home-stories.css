@@ -1,0 +1,37 @@
+/* home-stories — area styles that utilities cannot express (keyframes, complex selectors). Owned by the home-stories build. */
+
+/* ---- Testimonials carousel (src/js/modules/testimonials.js) -------------
+ * AnimatePresence mode="wait": out to y -16, then in from y 16, 0.5s each with Framer's
+ * default tween ease (easeInOut).
+ */
+@keyframes ist-testimonial-out {
+  to {
+    opacity: 0;
+    transform: translate3d(0, -16px, 0);
+  }
+}
+@keyframes ist-testimonial-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+}
+.ist-testimonial.is-leaving {
+  animation: ist-testimonial-out 0.5s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+.ist-testimonial.is-entering {
+  animation: ist-testimonial-in 0.5s cubic-bezier(0.42, 0, 0.58, 1) both;
+}
+
+/* Before the script boots only the first quote shows (html.js is set in <head>, so no flash). */
+.js [data-testimonials]:not(.is-ready) .ist-testimonial:not(:first-child) {
+  display: none;
+}
+
+/* No JavaScript: no controls, every quote listed one after another. */
+html:not(.js) [data-testimonials-controls] {
+  display: none;
+}
+html:not(.js) .ist-testimonial + .ist-testimonial {
+  margin-top: 3.5rem;
+}

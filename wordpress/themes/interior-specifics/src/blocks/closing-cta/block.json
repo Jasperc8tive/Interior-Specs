@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/closing-cta",
+	"version": "1.0.0",
+	"title": "Closing Call to Action",
+	"category": "interior-specifics",
+	"icon": "email-alt",
+	"description": "The final beat: a dark canvas with an invitation, the complimentary guide offer, WhatsApp and phone links, and the guide-request form.",
+	"keywords": [ "cta", "contact", "lead", "guide", "form", "consultation" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Begin Your Project" },
+		"title": { "type": "string", "default": "Let's design something worthy of you" },
+		"accentFrom": { "type": "number", "default": 3 },
+		"accentTo": { "type": "number", "default": 5 },
+		"bodyBefore": { "type": "string", "default": "Share a few details and we'll be in touch within 24 hours — with a complimentary copy of" },
+		"guideTitle": { "type": "string", "default": "The 7 Secrets of Luxury Interior Design in Nigeria" },
+		"bodyAfter": { "type": "string", "default": "and an invitation to a private consultation." },
+		"whatsappLabel": { "type": "string", "default": "Message on WhatsApp" },
+		"showPhone": { "type": "boolean", "default": true },
+		"submitLabel": { "type": "string", "default": "Send the Guide & Book Consultation" },
+		"finePrint": { "type": "string", "default": "No obligation. Your details are kept strictly private." },
+		"successTitle": { "type": "string", "default": "Thank you" },
+		"successBody": { "type": "string", "default": "Check your inbox shortly for the guide — we'll personally follow up within 24 hours to arrange your consultation." },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80" },
+		"imageAlt": { "type": "string", "default": "" }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

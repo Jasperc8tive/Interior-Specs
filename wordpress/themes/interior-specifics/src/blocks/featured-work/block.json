@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/featured-work",
+	"version": "1.0.0",
+	"title": "Featured Work",
+	"category": "interior-specifics",
+	"icon": "format-gallery",
+	"description": "Magazine-style showcase of up to six showroom projects: an asymmetric lead pair, a supporting trio and a cinematic closer. Cards reveal the blurb and investment range on hover.",
+	"keywords": [ "portfolio", "projects", "showroom", "case studies" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Selected Work" },
+		"title": { "type": "string", "default": "Spaces that speak of achievement" },
+		"accentFrom": { "type": "number", "default": 3 },
+		"accentTo": { "type": "number", "default": 4 },
+		"linkLabel": { "type": "string", "default": "View the Full Showroom" },
+		"linkUrl": { "type": "string", "default": "/showroom/" },
+		"source": { "type": "string", "enum": [ "featured", "selected" ], "default": "featured" },
+		"projectIds": { "type": "array", "items": { "type": "number" }, "default": [] }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

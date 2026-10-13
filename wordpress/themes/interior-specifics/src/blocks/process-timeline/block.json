@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/process-timeline",
+	"version": "1.0.0",
+	"title": "Process Timeline",
+	"category": "interior-specifics",
+	"icon": "editor-ol",
+	"description": "The Interior Specifics Method™ as a section: centred heading, then a row of numbered hairline cards that rise in turn on scroll.",
+	"keywords": [ "process", "method", "steps", "how we work", "timeline" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "How We Work" },
+		"title": { "type": "string", "default": "The Interior Specifics Method™" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "A proven, five-step process refined across hundreds of projects." },
+		"steps": {
+			"type": "array",
+			"default": [
+				{ "n": "01", "title": "Discover", "detail": "Deep-dive consultation, lifestyle audit and vision mapping." },
+				{ "n": "02", "title": "Design", "detail": "Concept development, 3D renderings and material selection." },
+				{ "n": "03", "title": "Source", "detail": "Curated furniture, artisan partnerships and global procurement." },
+				{ "n": "04", "title": "Execute", "detail": "Project management, quality control and timeline adherence." },
+				{ "n": "05", "title": "Reveal", "detail": "Final styling, walkthrough and lifetime support." }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

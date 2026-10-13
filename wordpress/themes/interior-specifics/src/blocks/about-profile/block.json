@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/about-profile",
+	"version": "1.0.0",
+	"title": "Company Profile",
+	"category": "interior-specifics",
+	"icon": "id-alt",
+	"description": "The About page story: heading and paragraphs beside a parallax image, followed by gold-ruled Mission and Vision cards. Targeted by the “Company Profile” menu link (#profile).",
+	"keywords": [ "about", "story", "profile", "mission", "vision" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Our Story" },
+		"title": { "type": "string", "default": "A studio built on a single conviction" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"paragraphs": {
+			"type": "array",
+			"default": [
+				{ "text": "Interior Specifics began with the belief that every accomplished person deserves a space that reflects their journey. What started as a boutique practice has grown into one of Lagos' most trusted luxury design firms, with over 200 completed projects." },
+				{ "text": "Today we offer a complete service — architecture, interiors, sourcing, finishing and project management — all under one roof, so our clients enjoy a seamless, stress-free experience from first sketch to final styling." }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"text": { "type": "string" }
+				}
+			}
+		},
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80" },
+		"imageAlt": { "type": "string", "default": "Interior Specifics design studio" },
+		"cards": {
+			"type": "array",
+			"default": [
+				{ "title": "Our Mission", "body": "To design and deliver exceptional spaces that elevate how our clients live, work and feel — with absolute craft and complete peace of mind." },
+				{ "title": "Our Vision", "body": "To be West Africa's most respected name in luxury interior design — the natural choice for those who expect the very best." }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": { "type": "string" },
+					"body": { "type": "string" }
+				}
+			}
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,32 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/services-preview",
+	"version": "1.0.0",
+	"title": "Services Preview",
+	"category": "interior-specifics",
+	"icon": "screenoptions",
+	"description": "Three service cards with a slow image push and gold caption on hover, under a heading and intro, with a button to all services. Cards come from Services in the admin menu.",
+	"keywords": [ "services", "disciplines", "cards", "what we do" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "What We Do" },
+		"title": { "type": "string", "default": "Every discipline, delivered in-house" },
+		"accentFrom": { "type": "number", "default": 3 },
+		"accentTo": { "type": "number", "default": 4 },
+		"intro": { "type": "string", "default": "From full residences to corporate headquarters — one team, one standard, from first sketch to final styling." },
+		"source": { "type": "string", "enum": [ "featured", "selected" ], "default": "featured" },
+		"serviceIds": { "type": "array", "items": { "type": "number" }, "default": [] },
+		"count": { "type": "number", "default": 3 },
+		"cardLinkLabel": { "type": "string", "default": "Learn More" },
+		"buttonLabel": { "type": "string", "default": "View All Services" },
+		"buttonUrl": { "type": "string", "default": "/services/" }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

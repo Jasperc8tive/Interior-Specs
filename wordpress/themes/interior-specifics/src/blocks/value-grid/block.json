@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/value-grid",
+	"version": "1.0.0",
+	"title": "Numbered Grid",
+	"category": "interior-specifics",
+	"icon": "screenoptions",
+	"description": "Centred section heading above a hairline grid of numbered cells (01, 02…) that rise in turn. Used for “Our core values” on About and “What to Expect” on Book.",
+	"keywords": [ "values", "grid", "features", "expect", "numbered" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "What We Stand For" },
+		"title": { "type": "string", "default": "Our core values" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "" },
+		"columns": { "type": "number", "default": 4 },
+		"background": { "type": "string", "enum": [ "ivory", "white" ], "default": "ivory" },
+		"items": {
+			"type": "array",
+			"default": [
+				{ "title": "Excellence", "body": "We pursue the exceptional in every detail, never the merely acceptable." },
+				{ "title": "Integrity", "body": "Transparent budgets, honest timelines and advice you can trust." },
+				{ "title": "Innovation", "body": "Fresh thinking grounded in timeless design principles." },
+				{ "title": "Client-Centricity", "body": "Your vision and your comfort lead every decision we make." }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"title": { "type": "string" },
+					"body": { "type": "string" }
+				}
+			}
+		}
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

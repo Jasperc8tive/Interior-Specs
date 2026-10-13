@@ -1,0 +1,71 @@
+/* home-method — area styles that utilities cannot express (keyframes, complex selectors). Owned by the home-method build. */
+
+/* ---- Method Journey (blocks/method-journey) ----------------------------- *
+ * Two server-rendered layouts; exactly one is displayed:
+ *   .ist-method__stack  stacked acts (default: no JS, phones, reduced motion, editor preview)
+ *   .ist-method__stage  pinned scrollytelling (md+, motion allowed)
+ * Before the script boots, html.js-motion + the media query pre-pin the section so desktop
+ * visitors never see the stacked layout flash. Once booted (.is-ready), .is-pinned decides.
+ * Cross-fades are plain CSS transitions keyed off the discrete .is-active scene, never
+ * per-frame style writes.
+ */
+.ist-method__stage {
+  display: none;
+}
+
+/* The dark section runs under the sticky header, so "Begin the Journey" (#method) lands at the very
+ * top as in Next instead of honouring html's scroll-padding-top. */
+.ist-method {
+  scroll-margin-top: calc(-1 * (var(--header-h) + 0.5rem + var(--wp-admin--admin-bar--height, 0px)));
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .js-motion .ist-method:not(.is-ready) {
+    height: calc(var(--acts, 5) * 100vh);
+  }
+  .js-motion .ist-method:not(.is-ready) > .ist-method__stage {
+    display: block;
+  }
+  .js-motion .ist-method:not(.is-ready) > .ist-method__stack {
+    display: none;
+  }
+}
+
+.ist-method.is-pinned {
+  height: calc(var(--acts, 5) * 100vh);
+}
+.ist-method.is-pinned > .ist-method__stage {
+  display: block;
+}
+.ist-method.is-pinned > .ist-method__stack {
+  display: none;
+}
+
+/* Image layer: opacity + scale 1.08 → 1 over 1s. */
+.ist-method__media {
+  opacity: 0;
+  transform: scale(1.08);
+  transition:
+    opacity 1s var(--ease-lux),
+    transform 1s var(--ease-lux);
+}
+.ist-method__scene.is-active > .ist-method__media {
+  opacity: 1;
+  transform: none;
+}
+
+/* Text layer: opacity + y 32px → 0 over .7s; .12s delay entering, none leaving. */
+.ist-method__copy {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  pointer-events: none;
+  transition:
+    opacity 0.7s var(--ease-lux),
+    transform 0.7s var(--ease-lux);
+}
+.ist-method__scene.is-active > .ist-method__copy {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.12s;
+}

@@ -1,0 +1,503 @@
+/*
+ * Interior Specifics — theme stylesheet (Tailwind v4).
+ * Tokens and utilities are ported 1:1 from the Next.js app/globals.css so markup and
+ * class names carry over unchanged. Build: npm run build:css.
+ */
+/*
+ * Layering: WordPress prints its global styles and block-library CSS unlayered, and unlayered
+ * CSS beats anything inside @layer regardless of specificity. So only the reset (preflight) is
+ * layered; utilities and the custom classes below are unlayered and win by normal specificity.
+ */
+@layer theme, base;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" source(none);
+
+/* Area styles, one file per build area (keyframes and selectors utilities can't express). */
+@import "./parts/home-hero.css";
+@import "./parts/home-method.css";
+@import "./parts/home-stories.css";
+@import "./parts/projects.css";
+@import "./parts/services.css";
+@import "./parts/journal.css";
+@import "./parts/forms.css";
+@import "./parts/about.css";
+
+@source "../../*.php";
+@source "../../inc/**/*.php";
+@source "../../template-parts/**/*.php";
+@source "../blocks/**/*.{php,js}";
+@source "../js/**/*.js";
+@source "../../../../plugins/interior-specifics-core/includes/**/*.php";
+
+/* ---- Fonts (self-hosted, latin subset) ---------------------------------- */
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("../../assets/fonts/playfair-display-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("../../assets/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-600-normal.woff2") format("woff2");
+}
+/* True italics — the Next.js build synthesised these. */
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-400-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-500-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../../assets/fonts/cormorant-latin-600-italic.woff2") format("woff2");
+}
+/*
+ * Metric-matched local fallbacks (the values next/font generates), so text set in Times/Arial
+ * while the web fonts load occupies the same space and the swap does not shift the layout.
+ */
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Times New Roman");
+  ascent-override: 97.25%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+  size-adjust: 111.26%;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+  size-adjust: 107.12%;
+}
+@font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Times New Roman");
+  ascent-override: 95.52%;
+  descent-override: 29.67%;
+  line-gap-override: 0%;
+  size-adjust: 96.74%;
+}
+
+/* static: always emit every token as a CSS variable — inline SVG/styles reference them. */
+@theme static {
+  /* Brand palette */
+  --color-charcoal: #1a1a1a;
+  --color-charcoal-light: #2a2a2a;
+  --color-onyx: #121110; /* deeper near-black for hero/closing canvases */
+  --color-gold: #c9a961;
+  --color-gold-soft: #d8c08a;
+  --color-gold-bright: #e4cf9c;
+  --color-ivory: #f5f1e8;
+  --color-ivory-dark: #ece5d5;
+  --color-graysoft: #8e8e8e;
+  --color-muted: #645c4e; /* warm taupe body text — AA (~5.8:1) on ivory/white */
+  --color-terracotta: #d4a574;
+  --color-burgundy: #8b3a3a;
+  --color-line: rgba(26, 26, 26, 0.1); /* hairline on light */
+  --color-line-light: rgba(245, 241, 232, 0.16); /* hairline on dark */
+
+  --font-serif: "Playfair Display", "Playfair Display Fallback", Georgia, serif;
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-accent: "Cormorant", "Cormorant Fallback", Georgia, serif;
+
+  /* Signature easing — a calm, premium curve reused across motion */
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  /* Height of the sticky header; heroes pull up under it with -mt-[88px]. */
+  --header-h: 88px;
+}
+
+@layer base {
+  /*
+   * scroll-padding keeps focused controls and anchor targets clear of the sticky header
+   * (WCAG 2.4.11) and the admin bar. Lenis (smooth-scroll.js) adds it as a native jump does, so
+   * targets need no scroll-margin of their own. 96px clears the 76–80px header; between lg and
+   * 1180px the nav wraps to two lines (102–112px).
+   */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 0.5rem + var(--wp-admin--admin-bar--height, 0px));
+  }
+  @media (min-width: 1024px) and (max-width: 1179.98px) {
+    html {
+      scroll-padding-top: calc(7.5rem + var(--wp-admin--admin-bar--height, 0px));
+    }
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+
+  /* Tailwind preflight resets this; keep native affordance for buttons. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+
+/*
+ * Headings — must beat utilities, exactly as in Next.js where globals.css is unlayered and
+ * Tailwind's utilities are layered: there, h1–h4 always render serif, line-height 1.12 and
+ * -0.015em tracking whatever text, leading, tracking or font utility classes they carry. Here
+ * utilities are unlayered (see top), so the rule gets one extra class of specificity via
+ * :not(.\#) — (0,1,1) beats a utility's (0,1,0). Classes that win over headings in Next
+ * (.display, .accent) get the same boost below.
+ */
+:is(h1, h2, h3, h4):not(.\#) {
+  font-family: var(--font-serif);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-wrap: balance;
+}
+
+p:not(.\#) {
+  text-wrap: pretty;
+}
+
+/* ---- Typographic helpers ---------------------------------------------- */
+
+/* Display scale for the largest editorial moments */
+.display,
+.display:not(.\#) {
+  font-family: var(--font-serif);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+/* Eyebrow: small caps, wide tracking, paired with a gold tick via ::before */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+}
+.eyebrow::before {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--color-gold);
+  flex: none;
+}
+.eyebrow.eyebrow--center::before {
+  display: none;
+}
+
+/* Refined accent — Cormorant italic for pull quotes / lyrical statements */
+.accent,
+.accent:not(.\#) {
+  font-family: var(--font-accent);
+  font-style: italic;
+}
+
+/* Gold gradient text for select numerals / accents */
+.gold-text {
+  background: linear-gradient(135deg, var(--color-gold-bright), var(--color-gold) 55%, #a8843f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---- Surface details -------------------------------------------------- */
+
+.gold-rule {
+  width: 64px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 17, 16, 0.35),
+    rgba(18, 17, 16, 0.55) 55%,
+    rgba(18, 17, 16, 0.78)
+  );
+}
+
+/* Fine film grain — adds tactile depth over dark imagery/canvases */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal-mask {
+  overflow: hidden;
+}
+
+/* ---- WordPress integration ------------------------------------------- */
+
+/* Heroes pull up beneath the front-end header; not in the editor canvas. */
+.editor-styles-wrapper [class*="-mt-[88px]"] {
+  margin-top: 0 !important;
+}
+
+/* Sections are full-bleed on the front end; don't squeeze their previews into contentSize. */
+.editor-styles-wrapper .is-root-container > [data-type^="interior-specifics/"] {
+  max-width: none;
+}
+
+/* Preflight resets h1 to body size; give the canvas post title a heading scale. */
+.editor-styles-wrapper .editor-post-title {
+  font-size: 2.75rem;
+  line-height: 1.12;
+}
+
+/* The sticky header sits below the admin bar when logged in. */
+.site-header {
+  top: var(--wp-admin--admin-bar--height, 0px);
+}
+
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+.skip-link:focus {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  width: auto;
+  margin: 0;
+  z-index: 100000;
+  left: 1rem;
+  top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-gold);
+  color: var(--color-charcoal);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/*
+ * Long-form body copy: legal pages, journal posts, service overviews. A 768px text column
+ * inside Container-style gutters, as Next's max-w-3xl. Muted rather than Next's graysoft
+ * (~3.3:1) so body text meets WCAG AA contrast.
+ */
+.is-prose {
+  margin-inline: auto;
+  max-width: calc(48rem + 3rem);
+  padding: 5rem 1.5rem;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .is-prose {
+    max-width: calc(48rem + 5rem);
+    padding: 7rem 2.5rem;
+  }
+}
+.is-prose > * + * {
+  margin-top: 1.5rem;
+}
+.is-prose h2 {
+  margin-top: 3rem;
+  font-size: 1.875rem;
+  color: var(--color-charcoal);
+}
+.is-prose h3 {
+  margin-top: 2.25rem;
+  font-size: 1.5rem;
+  color: var(--color-charcoal);
+}
+.is-prose a {
+  color: var(--color-charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-underline-offset: 3px;
+}
+.is-prose a:hover {
+  color: var(--color-gold);
+}
+.is-prose ul,
+.is-prose ol {
+  padding-left: 1.25rem;
+}
+.is-prose ul {
+  list-style: disc;
+}
+.is-prose ol {
+  list-style: decimal;
+}
+.is-prose blockquote {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1.5rem;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--color-charcoal);
+}
+.is-prose img {
+  height: auto;
+}
+.is-prose figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-graysoft);
+}
+
+/* ---- Motion: reveal system ------------------------------------------- *
+ * Hidden start states apply ONLY under html.js-motion, which the head script sets when JS
+ * runs and the visitor has not asked for reduced motion. No JS / reduced motion = content
+ * is simply visible. See src/js/modules/reveal.js.
+ *
+ *   data-reveal="rise|fade|section"  element reveals once when it enters the viewport
+ *   style="--reveal-delay:.15s"       optional delay
+ *   data-reveal-stagger="0.09"        parent: children with [data-reveal-item] reveal in turn
+ *   .ist-words                        masked word-by-word heading (see ist_animated_heading)
+ */
+.js-motion [data-reveal],
+.js-motion [data-reveal-item] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 26px), 0);
+  /* Colour fades are listed too so hover transitions on revealed cards still ease (300ms). */
+  transition:
+    opacity var(--reveal-duration, 0.9s) var(--ease-lux) calc(var(--reveal-delay, 0s) + var(--i, 0) * var(--stagger, 0s)),
+    transform var(--reveal-duration, 0.9s) var(--ease-lux) calc(var(--reveal-delay, 0s) + var(--i, 0) * var(--stagger, 0s)),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.js-motion [data-reveal="fade"] {
+  --reveal-y: 0px;
+}
+.js-motion [data-reveal="section"] {
+  --reveal-y: 28px;
+  --reveal-duration: 0.7s;
+}
+.js-motion [data-reveal].is-in,
+.js-motion .is-in > [data-reveal-item],
+.js-motion .is-in [data-reveal-item] {
+  opacity: 1;
+  transform: none;
+}
+
+.ist-words .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.ist-words .w__i {
+  display: inline-block;
+}
+.js-motion .ist-words .w__i {
+  transform: translate3d(0, 115%, 0);
+  transition: transform 0.95s var(--ease-lux);
+  transition-delay: calc(var(--reveal-delay, 0s) + var(--i, 0) * 70ms);
+}
+.js-motion .ist-words.is-in .w__i {
+  transform: none;
+}
+
+/* On-load entrance for above-the-fold hero pieces: data-settle + style="--settle-delay:.5s". */
+@keyframes ist-settle {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--settle-y, 20px), 0);
+  }
+}
+.js-motion [data-settle] {
+  animation: ist-settle 0.9s var(--ease-lux) both;
+  animation-delay: var(--settle-delay, 0s);
+}
+
+/* Scroll-linked transforms are written by JS each frame (scrub.js / parallax.js). */
+[data-scrub-media],
+[data-parallax] {
+  will-change: transform;
+}
+
+/* Lenis smooth scroll (recommended base styles). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

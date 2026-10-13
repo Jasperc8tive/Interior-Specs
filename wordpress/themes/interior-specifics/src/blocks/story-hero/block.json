@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/story-hero",
+	"version": "1.0.0",
+	"title": "Story Hero",
+	"category": "interior-specifics",
+	"icon": "format-image",
+	"description": "Full-screen homepage opening scene: drifting image, word-by-word headline, two calls to action, headline stats and a scroll cue. Use as the first block on the homepage.",
+	"keywords": [ "hero", "homepage", "banner", "intro" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"multiple": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Lagos' Premier Luxury Design House" },
+		"title": { "type": "string", "default": "Designing spaces worthy of achievement" },
+		"accentFrom": { "type": "number", "default": 2 },
+		"accentTo": { "type": "number", "default": 4 },
+		"body": { "type": "string", "default": "Bespoke interiors for Nigeria's most discerning homeowners and businesses — concept to completion, under one roof. Follow the journey from first vision to final reveal." },
+		"primaryLabel": { "type": "string", "default": "Book Your Private Consultation" },
+		"primaryUrl": { "type": "string", "default": "" },
+		"secondaryLabel": { "type": "string", "default": "Begin the Journey" },
+		"secondaryUrl": { "type": "string", "default": "#method" },
+		"verticalLabel": { "type": "string", "default": "Est. {year} — Victoria Island, Lagos" },
+		"stats": {
+			"type": "array",
+			"default": [],
+			"items": { "type": "object" }
+		},
+		"showScrollCue": { "type": "boolean", "default": true },
+		"scrollLabel": { "type": "string", "default": "Scroll" },
+		"imageId": { "type": "number", "default": 0 },
+		"imageUrl": { "type": "string", "default": "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=2400&q=80" },
+		"imageAlt": { "type": "string", "default": "Luxury living room interior bathed in warm natural light" }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

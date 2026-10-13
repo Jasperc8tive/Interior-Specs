@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/awards",
+	"version": "1.0.0",
+	"title": "Awards & Clients",
+	"category": "interior-specifics",
+	"icon": "awards",
+	"description": "Dark recognition section: a centred heading above a hairline grid of awards and features, closed by a line about clients. Targeted by the “Awards & Recognition” (#awards) and “Clients & Case Studies” (#clients) menu links.",
+	"keywords": [ "awards", "recognition", "press", "clients", "accolades" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Recognition" },
+		"title": { "type": "string", "default": "Awards & recognition" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "" },
+		"items": {
+			"type": "array",
+			"default": [
+				{ "text": "Architectural Digest Nigeria — Featured Studio" },
+				{ "text": "House & Home — Design of the Year, Finalist" },
+				{ "text": "IDAN — Member in Good Standing" },
+				{ "text": "Lagos Luxury Awards — Interior Firm of the Year" }
+			],
+			"items": {
+				"type": "object",
+				"properties": {
+					"text": { "type": "string" }
+				}
+			}
+		},
+		"clientsLine": { "type": "string", "default": "Trusted by homeowners, property developers and corporate clients across Lagos and beyond." }
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

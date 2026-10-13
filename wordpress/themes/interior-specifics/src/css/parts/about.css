@@ -1,0 +1,8 @@
+/* about — area styles that utilities cannot express (keyframes, complex selectors). Owned by the about build.
+ *
+ * Intentionally empty: the About sections (about-profile, value-grid, directors, awards) and the
+ * closing CTA (template-parts/cta-section.php) are expressed entirely with Tailwind utilities and
+ * the shared motion hooks (data-reveal, .ist-words, data-parallax). Hover colour transitions live
+ * on an inner panel, with the reveal on the grid cell, so the reveal transition in main.css never
+ * overrides `transition-colors`.
+ */

@@ -1,0 +1,250 @@
+/* journal — area styles that utilities cannot express (keyframes, complex selectors). Owned by the journal build.
+ *
+ * .ist-article is the body column of single.php. It reproduces the Next.js article blocks
+ * (h2: pt-4 text-2xl text-charcoal; p: text-lg leading-relaxed text-charcoal/80, stacked with
+ * space-y-6) and extends the same voice to every core block an editor might add: lists,
+ * quotes, images, separators, tables, code and links. Selectors use :where() inside so block
+ * support classes (alignment, colours, custom spacing) still win.
+ */
+
+.ist-article {
+  color: color-mix(in oklab, var(--color-charcoal) 80%, transparent);
+  font-size: 1.125rem;
+  line-height: 1.625;
+  overflow-wrap: break-word;
+}
+
+/* Vertical rhythm: space-y-6 between top-level blocks, neutralising block-library margins. */
+.ist-article.ist-article > * {
+  margin-block: 0;
+}
+.ist-article.ist-article > :not(:last-child) {
+  margin-block-end: 1.5rem;
+}
+
+/* ---- Headings --------------------------------------------------------- */
+.ist-article :where(h2, h3, h4, h5, h6) {
+  color: var(--color-charcoal);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.12; /* Next's base h1–h4 rule outranks the text-* line-heights there. */
+}
+.ist-article :where(h2) {
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
+.ist-article :where(h3) {
+  padding-top: 0.5rem;
+  font-size: 1.25rem;
+}
+.ist-article :where(h4, h5, h6) {
+  font-size: 1.125rem;
+}
+
+.ist-article :where(strong, b) {
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+
+/* ---- Links ------------------------------------------------------------ */
+.ist-article :where(a:not(.wp-block-button__link, .wp-element-button)) {
+  color: var(--color-charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease-lux);
+}
+.ist-article :where(a:not(.wp-block-button__link, .wp-element-button)):hover {
+  color: var(--color-gold);
+}
+.ist-article :where(a):focus-visible {
+  outline: 2px solid var(--color-charcoal); /* gold is 2.25:1 on the white article column */
+  outline-offset: 3px;
+}
+
+/* ---- Lists ------------------------------------------------------------ */
+.ist-article :where(ul, ol) {
+  padding-left: 1.5rem;
+}
+.ist-article :where(ul) {
+  list-style: disc;
+}
+.ist-article :where(ol) {
+  list-style: decimal;
+}
+.ist-article :where(li) {
+  padding-left: 0.25rem;
+}
+.ist-article :where(li + li),
+.ist-article :where(li > ul, li > ol) {
+  margin-top: 0.5rem;
+}
+.ist-article :where(li)::marker {
+  color: var(--color-gold);
+}
+.ist-article :where(ol > li)::marker {
+  font-family: var(--font-serif);
+}
+
+/* ---- Quotes ----------------------------------------------------------- */
+.ist-article :where(blockquote, .wp-block-quote) {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1.5rem;
+  color: var(--color-charcoal);
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+.ist-article :where(blockquote, .wp-block-quote) > :where(* + *) {
+  margin-top: 1rem;
+}
+.ist-article :where(blockquote cite, .wp-block-quote cite, .wp-block-pullquote cite) {
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.ist-article :where(.wp-block-pullquote) {
+  border-block: 1px solid var(--color-line);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+.ist-article :where(.wp-block-pullquote blockquote) {
+  border-left: 0;
+  padding-left: 0;
+  font-size: 1.875rem;
+}
+
+/* ---- Media ------------------------------------------------------------ */
+.ist-article :where(img, video) {
+  max-width: 100%;
+  height: auto;
+}
+.ist-article :where(figure) {
+  margin-inline: 0;
+}
+.ist-article :where(figcaption, .wp-element-caption) {
+  margin-top: 0.75rem;
+  color: var(--color-graysoft);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.ist-article :where(.wp-block-gallery) {
+  gap: 1rem;
+}
+@media (min-width: 1024px) {
+  .ist-article.ist-article > :where(.alignwide, .alignfull) {
+    margin-inline: -4rem;
+    max-width: none;
+    width: auto;
+  }
+}
+@media (min-width: 768px) {
+  .ist-article :where(.alignleft) {
+    float: left;
+    margin: 0.35rem 2rem 1rem 0;
+    max-width: 50%;
+  }
+  .ist-article :where(.alignright) {
+    float: right;
+    margin: 0.35rem 0 1rem 2rem;
+    max-width: 50%;
+  }
+}
+.ist-article::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ---- Rules, tables, code ---------------------------------------------- */
+.ist-article :where(hr, .wp-block-separator) {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin-block: 2.5rem;
+}
+.ist-article :where(.wp-block-separator.is-style-dots) {
+  border-top: 0;
+}
+.ist-article :where(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.ist-article :where(th, td) {
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.75rem 1rem 0.75rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+.ist-article .wp-block-table :where(th, td) {
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  padding: 0.75rem 1rem 0.75rem 0;
+}
+.ist-article .wp-block-table :where(thead) {
+  border-bottom: 1px solid var(--color-charcoal);
+}
+.ist-article :where(th) {
+  color: var(--color-charcoal);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.ist-article :where(code, kbd) {
+  background: var(--color-ivory);
+  padding: 0.1em 0.35em;
+  font-size: 0.875em;
+}
+.ist-article :where(pre) {
+  overflow-x: auto;
+  background: var(--color-ivory);
+  padding: 1.25rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.ist-article :where(pre code) {
+  background: none;
+  padding: 0;
+}
+
+/* ---- Paged articles (<!--nextpage-->) --------------------------------- */
+.ist-article__pages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+.ist-article__pages > span:first-child {
+  margin-right: 0.5rem;
+  color: var(--color-charcoal);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+.ist-article__pages :where(a, .post-page-numbers) {
+  display: inline-flex;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-line);
+  color: var(--color-charcoal);
+  text-decoration: none;
+}
+.ist-article__pages .current {
+  border-color: var(--color-charcoal);
+  background: var(--color-charcoal);
+  color: var(--color-ivory);
+}
