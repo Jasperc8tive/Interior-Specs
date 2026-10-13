@@ -1,0 +1,83 @@
+/* home-hero — area styles that utilities cannot express (keyframes, complex selectors). Owned by the home-hero build.
+ * Story Hero scroll cue, Credential Marquee loop, Stats Band text-value fade. */
+
+/* ---- Story Hero: scroll cue line bobs 0 → 9px → 0 (1.8s easeInOut, infinite) ---- */
+@keyframes ist-cue-bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 9px, 0);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ist-scroll-cue {
+    animation: ist-cue-bob 1.8s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  }
+}
+
+/* ---- Credential Marquee: two identical sets, slide by exactly one (-50%) ---- */
+@keyframes ist-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.ist-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ist-marquee__track {
+    animation: ist-marquee var(--marquee-duration, 36s) linear infinite;
+  }
+  /* Holds still while hovered, and for good once paused with the block's button (WCAG 2.2.2). */
+  .ist-marquee:hover .ist-marquee__track,
+  [data-marquee][data-paused] .ist-marquee__track {
+    animation-play-state: paused;
+  }
+}
+/* Reduced motion: a static, wrapping, centred row (CredentialMarquee's reduced branch). */
+@media (prefers-reduced-motion: reduce) {
+  .ist-marquee {
+    justify-content: center;
+    padding-inline: 1.5rem;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .ist-marquee__track {
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .ist-marquee__set {
+    flex-shrink: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 2rem;
+    row-gap: 0.75rem;
+  }
+  .ist-marquee__set[aria-hidden="true"],
+  .ist-marquee__dot {
+    display: none;
+  }
+  .ist-marquee__text {
+    padding-inline: 0;
+    letter-spacing: 0.22em;
+  }
+}
+
+/* ---- Stats Band: non-numeric values ("Lagos") fade + rise in (counters.js adds .is-in) ---- */
+.js-motion [data-count-fade] {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity 0.7s var(--ease-lux),
+    transform 0.7s var(--ease-lux);
+}
+.js-motion [data-count-fade].is-in {
+  opacity: 1;
+  transform: none;
+}

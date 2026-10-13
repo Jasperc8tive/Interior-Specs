@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/contact",
+	"version": "1.0.0",
+	"title": "Contact Section",
+	"category": "interior-specifics",
+	"icon": "email",
+	"description": "The Contact page body: the enquiry form, a \"Get in touch\" card with the studio's details, the office map and a short FAQ. Details come from Settings → Interior Specifics.",
+	"keywords": [ "contact", "form", "enquiry", "map", "faq" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Send a Message" },
+		"title": { "type": "string", "default": "Tell us about your project" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"submitLabel": { "type": "string", "default": "Send Inquiry" },
+		"successTitle": { "type": "string", "default": "Thank you" },
+		"successBody": { "type": "string", "default": "We've received your inquiry and will respond within 24 hours." },
+		"cardTitle": { "type": "string", "default": "Get in touch" },
+		"officeLabel": { "type": "string", "default": "Office" },
+		"phoneLabel": { "type": "string", "default": "Phone" },
+		"emailLabel": { "type": "string", "default": "Email" },
+		"whatsappLabel": { "type": "string", "default": "WhatsApp" },
+		"whatsappText": { "type": "string", "default": "Start a chat" },
+		"hoursLabel": { "type": "string", "default": "Hours" },
+		"showMap": { "type": "boolean", "default": true },
+		"mapLabel": { "type": "string", "default": "Map · Lagos Office" },
+		"faqEyebrow": { "type": "string", "default": "Good to Know" },
+		"faqTitle": { "type": "string", "default": "Before you reach out" },
+		"faqs": {
+			"type": "array",
+			"default": [
+				{ "q": "What happens after I submit?", "a": "A member of our team reviews your inquiry and responds within 24 hours to arrange your consultation." },
+				{ "q": "Do you offer free consultations?", "a": "Yes — your initial 30-minute design consultation is complimentary and without obligation." },
+				{ "q": "What's your typical response time?", "a": "We respond to all inquiries within one business day, often much sooner." }
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/testimonials",
+	"version": "1.0.0",
+	"title": "Testimonials",
+	"category": "interior-specifics",
+	"icon": "format-quote",
+	"description": "Client testimonials in an accessible carousel on a dark canvas, with previous / next, dots, arrow keys and swipe. Quotes come from Testimonials in the admin menu.",
+	"keywords": [ "testimonials", "reviews", "quotes", "carousel", "clients" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "In Their Words" },
+		"title": { "type": "string", "default": "What our clients say" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"source": { "type": "string", "enum": [ "all", "selected" ], "default": "all" },
+		"testimonialIds": { "type": "array", "items": { "type": "number" }, "default": [] },
+		"autoplay": { "type": "boolean", "default": false },
+		"interval": { "type": "number", "default": 7 }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,71 @@
+/* services — area styles that utilities cannot express (keyframes, complex selectors). Owned by the services build. */
+
+/* FAQ: hide the native disclosure triangle everywhere (list-none covers only Firefox/Chrome). */
+.ist-faq summary::-webkit-details-marker {
+  display: none;
+}
+.ist-faq summary::marker {
+  content: "";
+}
+.ist-faq summary:focus-visible {
+  outline: 2px solid var(--color-charcoal); /* the FAQ sits on white; gold would be 2.25:1 */
+  outline-offset: 4px;
+}
+
+/*
+ * Service overview: the post content is ordinary block-editor output. Paragraphs inherit the
+ * source typography from the wrapper (text-lg text-muted, space-y-5); anything richer an editor
+ * adds (headings, lists, links, quotes) is styled to match the site's prose.
+ */
+.ist-service-overview > * {
+  margin-block: 0;
+}
+.ist-service-overview > * + * {
+  margin-top: 1.25rem;
+}
+.ist-service-overview h2,
+.ist-service-overview h3,
+.ist-service-overview h4 {
+  margin-top: 2.25rem;
+  color: var(--color-charcoal);
+}
+.ist-service-overview h2 {
+  font-size: 1.875rem;
+}
+.ist-service-overview h3 {
+  font-size: 1.5rem;
+}
+.ist-service-overview a {
+  color: var(--color-charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--color-gold);
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease-lux);
+}
+.ist-service-overview a:hover {
+  color: var(--color-gold);
+}
+.ist-service-overview ul,
+.ist-service-overview ol {
+  padding-left: 1.25rem;
+}
+.ist-service-overview ul {
+  list-style: disc;
+}
+.ist-service-overview ol {
+  list-style: decimal;
+}
+.ist-service-overview li + li {
+  margin-top: 0.5rem;
+}
+.ist-service-overview blockquote {
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1.5rem;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--color-charcoal);
+}
+.ist-service-overview img {
+  height: auto;
+}

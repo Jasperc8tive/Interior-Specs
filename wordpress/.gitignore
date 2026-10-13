@@ -1,0 +1,6 @@
+.env
+dist/
+node_modules/
+themes/interior-specifics/build/
+plugins/interior-specifics-core/build/
+.review/

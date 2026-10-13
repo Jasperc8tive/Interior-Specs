@@ -1,0 +1,61 @@
+/* forms — area styles that utilities cannot express (keyframes, complex selectors). Owned by the forms build.
+ * Lead forms (inc/forms.php + src/js/modules/forms.js), the Contact and Booking blocks. */
+
+/* State swaps use the hidden attribute; never let a display utility (flex, block) override it. */
+[data-lead-form] [hidden],
+[data-lead-form][hidden] {
+  display: none !important;
+}
+
+/* The no-JS round trip lands on #form-id; html's scroll-padding-top already clears the sticky
+ * header, so this only adds breathing room. */
+[data-lead-form] form[id],
+[data-lead-form] [data-lead-success] {
+  scroll-margin-top: 1rem;
+}
+
+/* Server-flagged fields (422) — a calm warm edge rather than a shouting red box. */
+[data-lead-form] [aria-invalid="true"] {
+  border-color: var(--color-burgundy);
+}
+[data-lead-form][data-variant="dark"] [aria-invalid="true"],
+[data-lead-form][data-variant="footer"] [aria-invalid="true"] {
+  border-color: var(--color-terracotta);
+}
+[data-lead-form] input[type="checkbox"][aria-invalid="true"] {
+  outline: 1px solid var(--color-burgundy);
+  outline-offset: 2px;
+}
+
+/* Keyboard focus on the submit button and the consent checkbox (the Next build relied on the
+   browser default). Charcoal on the light forms, where gold is only ~2:1 against white/ivory;
+   gold on the dark and footer variants, where it is 7:1+. */
+[data-lead-form] button[type="submit"]:focus-visible,
+[data-lead-form] input[type="checkbox"]:focus-visible {
+  outline: 2px solid var(--color-charcoal);
+  outline-offset: 2px;
+}
+[data-lead-form][data-variant="dark"] button[type="submit"]:focus-visible,
+[data-lead-form][data-variant="dark"] input[type="checkbox"]:focus-visible,
+[data-lead-form][data-variant="footer"] button[type="submit"]:focus-visible,
+[data-lead-form][data-variant="footer"] input[type="checkbox"]:focus-visible {
+  outline-color: var(--color-gold);
+}
+
+/* Contact FAQ: native <details>; hide the WebKit disclosure marker that list-none misses. */
+.ist-faq summary::-webkit-details-marker {
+  display: none;
+}
+.ist-faq summary:focus-visible {
+  outline: 2px solid var(--color-charcoal); /* the FAQ sits on white; gold would be 2.25:1 */
+  outline-offset: 4px;
+}
+
+/* Calendly inline widget: reserve its height before the script paints the iframe. */
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 640px;
+}
+.calendly-inline-widget iframe {
+  display: block;
+}

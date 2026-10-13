@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/booking",
+	"version": "1.0.0",
+	"title": "Booking Scheduler",
+	"category": "interior-specifics",
+	"icon": "calendar-alt",
+	"description": "The consultation request form beside the live Calendly scheduler (set the Calendly URL in Settings → Interior Specifics), or an \"Instant scheduling\" card with phone and WhatsApp until it is connected.",
+	"keywords": [ "booking", "consultation", "calendly", "schedule", "form" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Request a Time" },
+		"title": { "type": "string", "default": "Tell us when suits you" },
+		"accentFrom": { "type": "number", "default": -1 },
+		"accentTo": { "type": "number", "default": -1 },
+		"intro": { "type": "string", "default": "Share your preferred date and time and we'll confirm within 24 hours. Prefer to pick a slot instantly? Use the scheduler." },
+		"submitLabel": { "type": "string", "default": "Request My Consultation" },
+		"successTitle": { "type": "string", "default": "Request received" },
+		"successBody": { "type": "string", "default": "Thank you — we'll confirm your consultation by email or phone within 24 hours." },
+		"schedulerTitle": { "type": "string", "default": "Schedule a consultation" },
+		"fallbackTitle": { "type": "string", "default": "Instant scheduling" },
+		"fallbackBody": { "type": "string", "default": "Live calendar booking will appear here once connected. In the meantime, the request form gets you the same result — we'll confirm your slot personally." },
+		"callLabel": { "type": "string", "default": "Call us:" },
+		"whatsappLabel": { "type": "string", "default": "Or message us on WhatsApp" },
+		"showHours": { "type": "boolean", "default": true }
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

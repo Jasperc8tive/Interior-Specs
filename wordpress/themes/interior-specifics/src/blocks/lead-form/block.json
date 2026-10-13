@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/lead-form",
+	"version": "1.0.0",
+	"title": "Lead Form",
+	"category": "interior-specifics",
+	"icon": "feedback",
+	"description": "Any of the site's enquiry forms — free guide, contact, consultation request or newsletter — with a heading. Submissions are saved under Leads and emailed to the studio.",
+	"keywords": [ "form", "lead", "guide", "newsletter", "contact", "download" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"type": { "type": "string", "default": "lead-magnet", "enum": [ "lead-magnet", "contact", "booking", "newsletter" ] },
+		"variant": { "type": "string", "default": "section", "enum": [ "section", "light", "dark", "footer" ] },
+		"eyebrow": { "type": "string", "default": "Free Guide" },
+		"title": { "type": "string", "default": "The 7 Secrets of Luxury Interior Design in Nigeria" },
+		"intro": { "type": "string", "default": "Download our complimentary guide, or book a free 30-minute design consultation." },
+		"submitLabel": { "type": "string", "default": "" },
+		"successTitle": { "type": "string", "default": "" },
+		"successBody": { "type": "string", "default": "" },
+		"finePrint": { "type": "string", "default": "" }
+	},
+	"example": {
+		"attributes": {
+			"type": "lead-magnet",
+			"variant": "section"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

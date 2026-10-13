@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/ethos",
+	"version": "1.0.0",
+	"title": "Ethos",
+	"category": "interior-specifics",
+	"icon": "editor-ol",
+	"description": "Editorial two-column statement: a sticky heading with supporting copy on the left, numbered value pillars on the right.",
+	"keywords": [ "ethos", "values", "pillars", "statement", "why" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "Why It Matters" },
+		"title": { "type": "string", "default": "Your space should reflect how far you've come" },
+		"accentFrom": { "type": "number", "default": 4 },
+		"accentTo": { "type": "number", "default": 7 },
+		"body": { "type": "string", "default": "You've worked hard for your success. Your home or office should tell that story — with clarity, warmth and undeniable presence." },
+		"accentLine": { "type": "string", "default": "We design the few square metres where your real life actually happens." },
+		"pillars": {
+			"type": "array",
+			"default": [
+				{ "title": "Bespoke by Design", "body": "No templates, no compromises — only your vision, drawn out and perfected." },
+				{ "title": "Turnkey Execution", "body": "Concept to completion under one roof. We handle absolutely everything." },
+				{ "title": "Luxury Without the Stress", "body": "A serene, documented process built around busy, accomplished lives." }
+			],
+			"items": { "type": "object" }
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

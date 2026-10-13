@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "interior-specifics/why-ledger",
+	"version": "1.0.0",
+	"title": "Why Ledger",
+	"category": "interior-specifics",
+	"icon": "editor-ol",
+	"description": "Reasons to choose the studio as a full-width ledger of numbered hairline rows that warm to gold on hover. Rows reveal one after another on scroll.",
+	"keywords": [ "why", "reasons", "difference", "list" ],
+	"textdomain": "interior-specifics",
+	"supports": {
+		"html": false,
+		"align": false,
+		"anchor": true
+	},
+	"attributes": {
+		"eyebrow": { "type": "string", "default": "The Difference" },
+		"title": { "type": "string", "default": "Why Nigeria's elite choose Interior Specifics" },
+		"accentFrom": { "type": "number", "default": 4 },
+		"accentTo": { "type": "number", "default": 5 },
+		"rows": {
+			"type": "array",
+			"default": [
+				{
+					"title": "End-to-End Service",
+					"body": "Concept, design, sourcing, build and styling — orchestrated under one roof, by one accountable team."
+				},
+				{
+					"title": "A Global Network",
+					"body": "Direct access to international furniture houses, ateliers and artisans most clients never reach."
+				},
+				{
+					"title": "A Transparent Process",
+					"body": "Clear timelines, documented budgets and honest counsel. You always know what you're paying for."
+				},
+				{
+					"title": "Lifetime Aftercare",
+					"body": "We remain on hand long after the reveal — because the relationship outlasts the project."
+				}
+			]
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

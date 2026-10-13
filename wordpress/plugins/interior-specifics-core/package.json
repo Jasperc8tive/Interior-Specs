@@ -1,0 +1,17 @@
+{
+  "name": "interior-specifics-core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Interior Specifics Core plugin: block-editor sidebar for custom fields.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build editor=./src/editor.js",
+    "start": "wp-scripts start editor=./src/editor.js",
+    "lint:js": "cross-env ESLINT_USE_FLAT_CONFIG=false wp-scripts lint-js src"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.27.0",
+    "cross-env": "^10.1.0",
+    "typescript": "~5.3.3"
+  }
+}
